@@ -1,17 +1,7 @@
-import React, { useState } from 'react';
-import { ChevronRight, ChevronLeft } from 'lucide-react';
-import HeroSection from './components/HeroSection';
-import DescriptionSection from './components/DescriptionSection';
-import ProductGallery from './components/ProductGallery';
-import BuyNowSection from './components/BuyNowSection';
-import CustomerReviews from './components/CustomerReviews';
-import FooterBanner from './components/FooterBanner';
+import React, { useState, useEffect } from 'react';
+import { Star } from 'lucide-react';
 
-function App() {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [quantity, setQuantity] = useState(1);
-  const [activeTab, setActiveTab] = useState('photos');
-
+const HeroSection = () => {
   const products = [
     {
       image: "https://ttcapwgcfadajcoljuuk.supabase.co/storage/v1/object/public/Video//full%20picture%20advertisements%20all.png",
@@ -45,42 +35,38 @@ function App() {
     }
   ];
 
-  const nextImage = () => {
-    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % products.length);
-  };
-
-  const prevImage = () => {
-    setCurrentImageIndex((prevIndex) => (prevIndex - 1 + products.length) % products.length);
-  };
-
-  const increaseQuantity = () => {
-    setQuantity(quantity + 1);
-  };
-
-  const decreaseQuantity = () => {
-    if (quantity > 1) {
-      setQuantity(quantity - 1);
-    }
-  };
-
   return (
-    <div className="min-h-screen bg-gray-50">
-      <HeroSection />
-      <DescriptionSection />
-      <div className="container mx-auto px-4 py-12">
-        <div className="flex flex-col lg:flex-row gap-12">
-          <ProductGallery products={products} />
-          <BuyNowSection 
-            quantity={quantity} 
-            increaseQuantity={increaseQuantity} 
-            decreaseQuantity={decreaseQuantity} 
-          />
+    <div className="relative h-[60vh] md:h-[80vh] overflow-hidden">
+      <video 
+        autoPlay 
+        loop 
+        muted 
+        playsInline
+        className="absolute top-0 left-0 w-full h-full object-cover"
+        src={products[0].video}
+      />
+      <div className="absolute inset-0 bg-black bg-opacity-50">
+        <div className="container mx-auto px-4 h-full flex items-center">
+          <div className="text-white max-w-2xl">
+            <h1 className="text-4xl md:text-6xl font-bold mb-4">Muahib Festival Mega Combo Deal</h1>
+            <p className="text-xl md:text-2xl mb-6">Limited Time Offer - 6 Premium Products in One Package</p>
+            <div className="flex items-center mb-4">
+              <div className="flex">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="h-5 w-5 fill-current text-yellow-400" />
+                ))}
+              </div>
+              <span className="ml-2">4.9 (256 reviews)</span>
+            </div>
+            <div className="bg-white/20 rounded-lg p-4 inline-block">
+              <p className="text-2xl font-bold">₦55,000 <span className="line-through text-lg font-normal text-gray-300">₦110,000</span></p>
+              <p className="text-yellow-300 font-semibold">50% OFF (Delivery Included)</p>
+            </div>
+          </div>
         </div>
       </div>
-      <CustomerReviews />
-      <FooterBanner />
     </div>
   );
-}
+};
 
-export default App;
+export default HeroSection;
