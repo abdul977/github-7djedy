@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Star, Package, Shield } from 'lucide-react';
+import WhatsAppFloatingButton from './components/WhatsAppFloatingButton';
 
 interface ProductCardProps {
   product: {
@@ -482,6 +483,8 @@ function App() {
           </button>
         </div>
       </div>
+
+      <WhatsAppFloatingButton />
     </div>
   );
 }
