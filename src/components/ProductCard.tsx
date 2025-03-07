@@ -9,18 +9,45 @@ interface ProductCardProps {
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
-  const [isPlaying, setIsPlaying] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
+  const [videoError, setVideoError] = useState(false);
   const videoRef = React.useRef<HTMLVideoElement>(null);
 
-  const togglePlay = () => {
-    if (videoRef.current) {
-      if (isPlaying) {
-        videoRef.current.pause();
-      } else {
-        videoRef.current.play();
+  // Verify video URL on component mount
+  React.useEffect(() => {
+    const checkVideoUrl = async () => {
+      try {
+        const response = await fetch(product.video, { method: 'HEAD' });
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        // URL is valid and accessible
+        setVideoError(false);
+      } catch (error) {
+        console.error('Video URL check failed:', error);
+        setVideoError(true);
       }
-      setIsPlaying(!isPlaying);
+    };
+    
+    checkVideoUrl();
+  }, [product.video]);
+
+  const togglePlay = async () => {
+    if (videoRef.current) {
+      try {
+        if (isPlaying) {
+          await videoRef.current.pause();
+        } else {
+          console.log('Video source:', videoRef.current.src);
+          console.log('Video ready state:', videoRef.current.readyState);
+          console.log('Video error:', videoRef.current.error);
+          await videoRef.current.play();
+        }
+        setIsPlaying(!isPlaying);
+      } catch (error) {
+        console.error('Video playback error:', error);
+      }
     }
   };
 
@@ -43,15 +70,38 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           />
         </div>
         <div className="relative rounded-xl overflow-hidden h-[300px] sm:h-[400px] md:h-[500px] shadow-md">
-          <video 
-            ref={videoRef}
-            autoPlay
-            loop
-            muted={isMuted}
-            playsInline
-            className="w-full h-full object-cover"
-            src={product.video}
-          />
+          <div className="relative">
+            <video
+              ref={videoRef}
+              autoPlay
+              loop
+              muted={isMuted}
+              playsInline
+              className="w-full h-full object-cover"
+              onError={(e) => {
+                console.error('Video loading error:', {
+                  error: e.currentTarget.error,
+                  networkState: e.currentTarget.networkState,
+                  src: e.currentTarget.src
+                });
+                // Show the error message to the user
+                if (e.currentTarget instanceof HTMLVideoElement) {
+                  e.currentTarget.classList.add('hidden');
+                  const errorDiv = e.currentTarget.parentElement?.querySelector('.video-error');
+                  if (errorDiv instanceof HTMLDivElement) {
+                    errorDiv.classList.remove('hidden');
+                    errorDiv.classList.add('flex');
+                  }
+                }
+              }}
+            >
+              <source src={product.video} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+            <div className="video-error hidden absolute inset-0 bg-gray-100 items-center justify-center text-gray-500 text-sm">
+              <p>Video failed to load. Please try refreshing the page.</p>
+            </div>
+          </div>
           <div className="absolute bottom-4 right-4 flex gap-2">
             <button
               onClick={togglePlay}
