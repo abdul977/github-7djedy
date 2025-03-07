@@ -11,27 +11,7 @@ interface ProductCardProps {
 export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
-  const [videoError, setVideoError] = useState(false);
   const videoRef = React.useRef<HTMLVideoElement>(null);
-
-  // Verify video URL on component mount
-  React.useEffect(() => {
-    const checkVideoUrl = async () => {
-      try {
-        const response = await fetch(product.video, { method: 'HEAD' });
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        // URL is valid and accessible
-        setVideoError(false);
-      } catch (error) {
-        console.error('Video URL check failed:', error);
-        setVideoError(true);
-      }
-    };
-    
-    checkVideoUrl();
-  }, [product.video]);
 
   const togglePlay = async () => {
     if (videoRef.current) {

@@ -15,7 +15,7 @@ export default defineConfig({
         description: "Premium tech accessories bundle with Smart Watch, Wireless Earbuds, Backpack, Power Bank, and Wireless Charger",
         theme_color: "#000000",
         background_color: "#ffffff",
-        display: "standalone",p
+        display: "standalone",
         orientation: "portrait",
         scope: "/",
         start_url: "/",
