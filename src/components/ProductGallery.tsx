@@ -1,4 +1,5 @@
 import React from 'react';
+import { ProductCard } from './ProductCard';
 
 interface ProductGalleryProps {
   products: {
@@ -10,33 +11,14 @@ interface ProductGalleryProps {
 
 export const ProductGallery: React.FC<ProductGalleryProps> = ({ products }) => {
   return (
-    <div className="lg:w-1/2">
-      <h2 className="text-2xl font-bold mb-6">Product Gallery</h2>
-      <div className="space-y-8">
-        {products.map((product, index) => (
-          <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden">
-            <h3 className="text-xl font-semibold p-4 bg-gray-50">{product.title}</h3>
-            <div className="grid grid-cols-2 gap-2 p-4">
-              <div className="aspect-[3/4] rounded-lg overflow-hidden">
-                <img 
-                  src={product.image} 
-                  alt={product.title}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="aspect-[3/4] rounded-lg overflow-hidden">
-                <video 
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className="w-full h-full object-cover"
-                  src={product.video}
-                />
-              </div>
-            </div>
-          </div>
-        ))}
+    <div className="bg-gray-50 py-16">
+      <div className="container mx-auto px-4">
+        <h2 className="text-3xl font-bold text-center mb-12">Product Gallery</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {products.map((product, index) => (
+            <ProductCard key={index} product={product} />
+          ))}
+        </div>
       </div>
     </div>
   );
