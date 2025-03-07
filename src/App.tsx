@@ -6,7 +6,6 @@ import { ProductGallery } from './components/ProductGallery';
 import { BuyNowSection } from './components/BuyNowSection';
 import { CustomerReviews } from './components/CustomerReviews';
 import { FooterBanner } from './components/FooterBanner';
-import { WhatsAppFloatingButton } from './components/WhatsAppFloatingButton';
 
 function App() {
   const [quantity, setQuantity] = useState(1);
@@ -70,7 +69,6 @@ function App() {
       </div>
       <CustomerReviews />
       <FooterBanner />
-      <WhatsAppFloatingButton />
     </div>
   );
 }
