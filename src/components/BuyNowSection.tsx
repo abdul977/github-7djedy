@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ShoppingCart, Truck, Shield } from 'lucide-react';
+import { OrderForm, OrderFormData } from './OrderForm';
 
 interface BuyNowSectionProps {
   quantity: number;
@@ -7,7 +8,44 @@ interface BuyNowSectionProps {
   decreaseQuantity: () => void;
 }
 
+const PRODUCT_DETAILS = `• Premium SmartWatch with Heart Rate & BP Monitor
+• High Quality Wireless Earbuds
+• 10,000mAh Magnetic Power Bank
+• Wireless Fast Charger
+• Premium Backpack
+• Bonus Accessories`;
+
 export const BuyNowSection: React.FC<BuyNowSectionProps> = ({ quantity, increaseQuantity, decreaseQuantity }) => {
+  const [showOrderForm, setShowOrderForm] = useState(false);
+
+  const handleSubmit = (formData: OrderFormData) => {
+    const whatsappMessage = `🎫 Order Number: ${formData.orderNumber}
+
+👤 Customer Details:
+   - Name: ${formData.name}
+   - Phone: ${formData.phoneNumber}
+   - Alt Phone: ${formData.alternativePhone || 'N/A'}
+   - Address: ${formData.address}
+   - City: ${formData.city}
+   - State: ${formData.state}
+
+📦 Order Details:
+   - Product: Muahib Festival Mega Combo Deal
+   ${PRODUCT_DETAILS.split('\n').map(item => '   ' + item).join('\n')}
+   - Quantity: ${formData.quantity}
+   - Price Per Unit: ₦55,000
+   - Total Price: ₦${formData.totalPrice.toLocaleString()}
+
+💬 Additional Comments: ${formData.comments || 'None'}
+
+✅ Pay on Delivery: Confirmed
+📍 Same-day delivery available in Abuja (delivery time depends on distance)
+🎉 Thank you for your order!`;
+
+    window.open(`https://wa.me/+2348144493361?text=${encodeURIComponent(whatsappMessage)}`, '_blank');
+    setShowOrderForm(false);
+  };
+
   return (
     <div className="lg:w-1/2">
       <div className="bg-white p-6 rounded-lg shadow-md mb-8 sticky top-4">
@@ -44,7 +82,10 @@ export const BuyNowSection: React.FC<BuyNowSectionProps> = ({ quantity, increase
           </div>
         </div>
 
-        <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-md font-medium flex items-center justify-center mb-4">
+        <button 
+          onClick={() => setShowOrderForm(true)}
+          className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-md font-medium flex items-center justify-center mb-4"
+        >
           <ShoppingCart className="h-5 w-5 mr-2" />
           Buy Now
         </button>
@@ -60,7 +101,7 @@ export const BuyNowSection: React.FC<BuyNowSectionProps> = ({ quantity, increase
             </div>
             <div>
               <p className="font-medium">Free Delivery</p>
-              <p className="text-sm text-gray-600">Delivery within 3-5 business days</p>
+              <p className="text-sm text-gray-600">Same-day delivery in Abuja</p>
             </div>
           </div>
           <div className="flex">
@@ -74,6 +115,18 @@ export const BuyNowSection: React.FC<BuyNowSectionProps> = ({ quantity, increase
           </div>
         </div>
       </div>
+
+      {showOrderForm && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+          <div className="max-w-xl w-full max-h-[90vh] overflow-y-auto">
+            <OrderForm
+              onSubmit={handleSubmit}
+              quantity={quantity}
+              onClose={() => setShowOrderForm(false)}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 };
