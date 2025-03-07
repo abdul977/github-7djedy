@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
-const WhatsAppFloatingButton: React.FC = () => {
+export const WhatsAppFloatingButton: React.FC = () => {
   const [isFormVisible, setIsFormVisible] = useState(false);
   const [name, setName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -75,5 +75,3 @@ const WhatsAppFloatingButton: React.FC = () => {
     </div>
   );
 };
-
-export default WhatsAppFloatingButton;

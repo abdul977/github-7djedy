@@ -1,7 +1,7 @@
 import React from 'react';
 import { Star } from 'lucide-react';
 
-const CustomerReviews: React.FC = () => {
+export const CustomerReviews = () => {
   const reviews = [
     {
       name: "Oluwaseun A.",
@@ -56,5 +56,3 @@ const CustomerReviews: React.FC = () => {
     </div>
   );
 };
-
-export default CustomerReviews;

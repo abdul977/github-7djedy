@@ -1,7 +1,7 @@
 import React from 'react';
-import { Star, Shield, Package } from 'lucide-react';
+import { Shield, Star, Package } from 'lucide-react';
 
-const DescriptionSection: React.FC = () => {
+export const DescriptionSection = () => {
   return (
     <div className="bg-white py-16">
       <div className="container mx-auto px-4">
@@ -83,5 +83,3 @@ const DescriptionSection: React.FC = () => {
     </div>
   );
 };
-
-export default DescriptionSection;
