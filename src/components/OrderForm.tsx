@@ -63,17 +63,42 @@ export const OrderForm: React.FC<OrderFormProps> = ({ onSubmit, quantity = 1, on
 
   return (
     <div className="bg-white p-6 rounded-lg shadow-lg">
-      <div className="mb-6 bg-yellow-50 border-l-4 border-yellow-400 p-4">
-        <h3 className="text-lg font-bold text-yellow-800 mb-2">⚠️ Important Notice</h3>
-        <p className="text-yellow-800">
-          Please only place an order if you are ready to make a purchase. If you're not ready to buy now:
-        </p>
-        <ul className="list-disc ml-6 mt-2 text-yellow-800">
-          <li>Bookmark this page to return later</li>
-          <li>Contact us on WhatsApp (+234-814-449-3361) to schedule a future delivery</li>
-        </ul>
-        <p className="mt-2 text-yellow-800 font-semibold">
-          For Abuja customers: Same-day delivery available (delivery time depends on distance)
+      <div className="mb-6 bg-red-50 border-2 border-red-500 p-6 rounded-lg shadow-md">
+        <div className="flex items-start gap-4">
+          <div className="flex-1">
+            <h3 className="text-xl font-bold text-red-700 mb-3">🚨 Please Read Carefully!</h3>
+            <p className="text-red-700 font-medium mb-3">
+              We kindly request that you only place an order if you have a genuine intention to purchase. Non-serious orders have real consequences for our small business:
+            </p>
+            <ul className="list-disc ml-6 mb-4 text-red-700 space-y-2">
+              <li>Each delivery attempt costs us fuel and driver time</li>
+              <li>Products reserved for non-serious orders could have gone to genuine customers</li>
+              <li>Our staff spends valuable time preparing and following up on orders</li>
+            </ul>
+            <div className="bg-white p-4 rounded-lg border border-red-300 mb-4">
+              <p className="text-red-700 font-semibold text-center">
+                If you're not ready to purchase now:
+              </p>
+              <ul className="list-none mt-2 space-y-2">
+                <li className="flex items-center gap-2">
+                  <span className="text-red-500">📌</span>
+                  <span className="text-red-700">Bookmark this page to return when ready</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-red-500">💬</span>
+                  <span className="text-red-700">Contact us on WhatsApp (+234-814-449-3361) for future delivery</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <img 
+            src="https://thumbs.dreamstime.com/z/cartoon-office-worker-begging-his-job-isolated-42117823.jpg"
+            alt="Please consider our request"
+            className="w-32 h-32 object-contain rounded-lg"
+          />
+        </div>
+        <p className="mt-2 text-red-700 font-medium border-t border-red-300 pt-3">
+          Abuja customers: Same-day delivery available (delivery time varies by location)
         </p>
       </div>
 
