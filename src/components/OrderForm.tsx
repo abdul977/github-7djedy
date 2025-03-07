@@ -62,10 +62,10 @@ export const OrderForm: React.FC<OrderFormProps> = ({ onSubmit, quantity = 1, on
   };
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-lg">
-      <div className="mb-6 bg-red-50 border-2 border-red-500 p-6 rounded-lg shadow-md">
-        <div className="flex items-start gap-4">
-          <div className="flex-1">
+    <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg">
+      <div className="mb-4 sm:mb-6 bg-red-50 border-2 border-red-500 p-4 sm:p-6 rounded-lg shadow-md">
+        <div className="flex flex-col sm:flex-row items-start gap-4">
+          <div className="flex-1 order-2 sm:order-1">
             <h3 className="text-xl font-bold text-red-700 mb-3">🚨 Please Read Carefully!</h3>
             <p className="text-red-700 font-medium mb-3">
               We kindly request that you only place an order if you have a genuine intention to purchase. Non-serious orders have real consequences for our small business:
@@ -94,7 +94,7 @@ export const OrderForm: React.FC<OrderFormProps> = ({ onSubmit, quantity = 1, on
           <img 
             src="https://thumbs.dreamstime.com/z/cartoon-office-worker-begging-his-job-isolated-42117823.jpg"
             alt="Please consider our request"
-            className="w-32 h-32 object-contain rounded-lg"
+            className="w-24 h-24 sm:w-32 sm:h-32 object-contain rounded-lg mx-auto order-1 sm:order-2"
           />
         </div>
         <p className="mt-2 text-red-700 font-medium border-t border-red-300 pt-3">
@@ -103,84 +103,84 @@ export const OrderForm: React.FC<OrderFormProps> = ({ onSubmit, quantity = 1, on
       </div>
 
       <form onSubmit={handleSubmit}>
-        <div className="mb-6 bg-blue-50 p-4 rounded-lg">
-          <h3 className="text-lg font-bold text-blue-800 mb-2">🎁 Package Contents:</h3>
+        <div className="mb-4 sm:mb-6 bg-blue-50 p-3 sm:p-4 rounded-lg">
+          <h3 className="text-base sm:text-lg font-bold text-blue-800 mb-2">🎁 Package Contents:</h3>
           <pre className="whitespace-pre-wrap text-blue-800">{PRODUCT_DETAILS}</pre>
         </div>
 
         <div className="mb-4">
-          <label className="block text-gray-700 font-medium mb-2">Name</label>
+          <label className="block text-gray-700 text-sm sm:text-base font-medium mb-1 sm:mb-2">Name</label>
           <input
             type="text"
             name="name"
             value={formData.name}
             onChange={handleChange}
-            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 sm:px-4 py-2 text-base border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             required
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700 font-medium mb-2">Phone Number</label>
+          <label className="block text-gray-700 text-sm sm:text-base font-medium mb-1 sm:mb-2">Phone Number</label>
           <input
             type="tel"
             name="phoneNumber"
             value={formData.phoneNumber}
             onChange={handleChange}
-            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 sm:px-4 py-2 text-base border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             required
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700 font-medium mb-2">Alternative Phone Number</label>
+          <label className="block text-gray-700 text-sm sm:text-base font-medium mb-1 sm:mb-2">Alternative Phone Number</label>
           <input
             type="tel"
             name="alternativePhone"
             value={formData.alternativePhone}
             onChange={handleChange}
-            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 sm:px-4 py-2 text-base border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700 font-medium mb-2">Delivery Address</label>
+          <label className="block text-gray-700 text-sm sm:text-base font-medium mb-1 sm:mb-2">Delivery Address</label>
           <textarea
             name="address"
             value={formData.address}
             onChange={handleChange}
-            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 sm:px-4 py-2 text-base border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             rows={3}
             required
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700 font-medium mb-2">City</label>
+          <label className="block text-gray-700 text-sm sm:text-base font-medium mb-1 sm:mb-2">City</label>
           <input
             type="text"
             name="city"
             value={formData.city}
             onChange={handleChange}
-            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 sm:px-4 py-2 text-base border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             required
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700 font-medium mb-2">State</label>
+          <label className="block text-gray-700 text-sm sm:text-base font-medium mb-1 sm:mb-2">State</label>
           <select
             name="state"
             value={formData.state}
             onChange={handleChange}
-            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 sm:px-4 py-2 text-base border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             required
           >
             <option value="Abuja">Abuja</option>
           </select>
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700 font-medium mb-2">Order Comments (Optional)</label>
+          <label className="block text-gray-700 text-sm sm:text-base font-medium mb-1 sm:mb-2">Order Comments (Optional)</label>
           <textarea
             name="comments"
             value={formData.comments}
             onChange={handleChange}
-            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 sm:px-4 py-2 text-base border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             rows={3}
           />
         </div>
@@ -192,8 +192,8 @@ export const OrderForm: React.FC<OrderFormProps> = ({ onSubmit, quantity = 1, on
             <p className="font-bold text-lg mt-2">Total: ₦{(quantity * PRICE_PER_UNIT).toLocaleString()}</p>
           </div>
         </div>
-        <div className="flex items-center gap-2 text-sm text-gray-600 mb-4">
-          <input type="checkbox" required />
+        <div className="flex items-start gap-3 text-sm text-gray-600 mb-4">
+          <input type="checkbox" required className="mt-1 w-4 h-4" />
           <label>I confirm that I will be available to receive and pay for my package</label>
         </div>
         <div className="flex gap-3">
@@ -201,14 +201,14 @@ export const OrderForm: React.FC<OrderFormProps> = ({ onSubmit, quantity = 1, on
             <button
               type="button"
               onClick={onClose}
-              className="w-1/2 bg-gray-500 hover:bg-gray-600 text-white py-3 rounded-md font-bold"
+              className="w-1/2 bg-gray-500 hover:bg-gray-600 active:bg-gray-700 text-white py-3 rounded-md font-bold text-sm sm:text-base"
             >
               Cancel
             </button>
           )}
           <button
             type="submit"
-            className={`${onClose ? 'w-1/2' : 'w-full'} bg-gradient-to-r from-green-500 to-green-700 text-white py-3 rounded-md font-bold hover:opacity-90 transition-opacity`}
+            className={`${onClose ? 'w-1/2' : 'w-full'} bg-gradient-to-r from-green-500 to-green-700 text-white py-3 rounded-md font-bold hover:opacity-90 active:opacity-100 transition-opacity text-sm sm:text-base`}
           >
             Submit Order
           </button>

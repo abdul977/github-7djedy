@@ -32,17 +32,17 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   };
 
   return (
-    <div className="bg-white rounded-xl shadow-lg overflow-hidden transform transition-transform hover:scale-[1.02] duration-300">
-      <h3 className="text-2xl font-bold p-6 bg-gradient-to-r from-blue-600 to-purple-600 text-white">{product.title}</h3>
-      <div className="flex flex-col gap-6 p-6">
-        <div className="rounded-xl overflow-hidden h-[500px] shadow-md">
+    <div className="bg-white rounded-xl shadow-lg overflow-hidden transform transition-transform hover:scale-[1.02] active:scale-[0.98] duration-300">
+      <h3 className="text-xl sm:text-2xl font-bold p-4 sm:p-6 bg-gradient-to-r from-blue-600 to-purple-600 text-white">{product.title}</h3>
+      <div className="flex flex-col gap-4 sm:gap-6 p-4 sm:p-6">
+        <div className="rounded-xl overflow-hidden h-[300px] sm:h-[400px] md:h-[500px] shadow-md">
           <img 
             src={product.image} 
             alt={product.title}
             className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
           />
         </div>
-        <div className="relative rounded-xl overflow-hidden h-[500px] shadow-md">
+        <div className="relative rounded-xl overflow-hidden h-[300px] sm:h-[400px] md:h-[500px] shadow-md">
           <video 
             ref={videoRef}
             autoPlay
@@ -55,7 +55,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           <div className="absolute bottom-4 right-4 flex gap-2">
             <button
               onClick={togglePlay}
-              className="bg-black/70 hover:bg-black text-white p-2 rounded-full transition-colors"
+              className="bg-black/70 hover:bg-black active:bg-black text-white p-3 sm:p-2 rounded-full transition-colors"
             >
               {isPlaying ? (
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -69,7 +69,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             </button>
             <button
               onClick={toggleMute}
-              className="bg-black/70 hover:bg-black text-white p-2 rounded-full transition-colors"
+              className="bg-black/70 hover:bg-black active:bg-black text-white p-3 sm:p-2 rounded-full transition-colors"
             >
               {isMuted ? (
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
